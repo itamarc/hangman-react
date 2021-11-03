@@ -4,7 +4,7 @@ function LetterForm(props) {
     const [letter, setLetter] = useState("")
 
     const onChange = e => {
-        setLetter(e.target.value);
+        setLetter(e.target.value.toUpperCase());
     }
 
     const submitLetter = (e) => {

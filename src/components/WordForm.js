@@ -4,7 +4,7 @@ function WordForm(props) {
     const [word, setWord] = useState("")
 
     const onChange = e => {
-        setWord(e.target.value);
+        setWord(e.target.value.toUpperCase());
     }
 
     const submitWord = (e) => {

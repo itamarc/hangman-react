@@ -15,21 +15,44 @@ function Game() {
         result: 0 // 0 - no result yet; 1 - win; 2 - lost
     });
 
-    function handleNewLetter(char) {
+    function noMissingLetters() {
+        var complete = true;
+        for (let i = 0; i < state.word.length; i++) {
+            if (!state.rightLetters.includes(state.word.charAt(i))) {
+                complete = false;
+            }
+            console.log(state.word.charAt(i));
+        }
+        console.log(complete);
+        return complete;
+    }
+
+    function handleNewLetter(letter) {
         var gameOngoing = true;
         console.log("handleNewLetter: ");
-        if (char === "") {
+        if (letter === "") {
             console.log("no letter")
             return;
         } else {
-            console.log(char);
+            console.log(letter);
         }
         // check if the new letter is in the word
         // if it is and it's not on rightLetters
+        if (state.word.includes(letter) && !state.rightLetters.includes(letter)) {
             // show new letter on Word (HOW??)
+            setState({
+                ...state,
+                rightLetters: [...state.rightLetters, letter]
+            });
             // if word complete
+            if (noMissingLetters()) {
                 // show "you won" message (HOW??)
-                // reset controls state
+                setState({
+                    ...state,
+                    result: 1
+                });
+            }
+        }
         // if it's not and it's not on wrongLetters
             // add new letter on Letters (HOW??)
             // show new part on image
@@ -51,9 +74,9 @@ function Game() {
     return (
         <div id="hangmandiv">
             <HangmanImg wrongLetters={state.wrongLetters} />
-            <Controls gameStarted={(state.word !== "")} onNewLetter={handleNewLetter} onNewWord={handleNewWord} />
-            <Word word={state.word} rightLetters={state.rightLetters} />
-            <Letters wrongLetters={state.wrongLetters} />
+            <Controls gameStarted={(state.word !== "")} onNewLetter={handleNewLetter} onNewWord={handleNewWord} result={state.result} />
+            <Word word={state.word} rightLetters={state.rightLetters} result={state.result} />
+            <Letters wrongLetters={state.wrongLetters} result={state.result} />
         </div>
     );
 }
