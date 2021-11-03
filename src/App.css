@@ -68,6 +68,10 @@ h3.won {
   justify-content: center;
 }
 
+#lettersdiv.wondiv {
+  border: green solid 2px;
+}
+
 .letternotfound {
   font-weight: bold;
   color: darkred;

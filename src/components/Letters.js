@@ -10,7 +10,7 @@ function Letters(props) {
         );
     } else if (props.result === 1) {
         return (
-        <div id="lettersdiv"><h3 className="won">You have WON!</h3></div>
+        <div id="lettersdiv" className="wondiv"><h3 className="won">You have WON!</h3></div>
         );
     } else {
         return (
