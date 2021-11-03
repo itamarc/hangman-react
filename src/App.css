@@ -85,6 +85,12 @@ h3.won {
 }
 
 .wordcol {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 2px solid rgb(119, 119, 119);
   width: 2em;
+  justify-self: center;
+  font-weight: bold;
+}
+
+.missedletter {
+  color: red;
 }

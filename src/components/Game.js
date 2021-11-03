@@ -9,9 +9,6 @@ function Game() {
         word: "",
         rightLetters: [],
         wrongLetters: [],
-        // word: "FAFADE",
-        // rightLetters: ['F', 'D'],
-        // wrongLetters: ['X', 'Y', 'Z'],
         result: 0 // 0 - no result yet; 1 - win; 2 - lost
     });
 
@@ -42,9 +39,8 @@ function Game() {
             if (noMissingLetters([...state.rightLetters, letter])) {
                 // show "you won" message
                 setState({
-                    word: "",
-                    rightLetters: [],
-                    wrongLetters: [],
+                    ...state,
+                    rightLetters: [...state.rightLetters, letter],
                     result: 1
                 });
             }
