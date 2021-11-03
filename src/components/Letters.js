@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
-import { GameContext } from "./Game"
+import React from "react";
 
-function Letters() {
-    const {gameCtx} = useContext(GameContext);
-    console.log(gameCtx.wrongLetters);
+function Letters(props) {
+    console.log(props.wrongLetters);
     return (
         <div id="lettersdiv">
             <h2>Letters Not In The Word</h2>
-            <div className="letters">L E T R S</div>
+            <div className="letters">{props.wrongLetters}</div>
         </div>
     );
 }

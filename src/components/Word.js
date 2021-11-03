@@ -1,14 +1,12 @@
-import React, { useContext } from "react";
-import { GameContext } from "./Game"
+import React from "react";
 
-function Word() {
-    const {gameCtx} = useContext(GameContext);
-    console.log(gameCtx.word)
-    console.log(gameCtx.rightLetters);
+function Word(props) {
+    console.log(props.word)
+    console.log(props.rightLetters);
     return (
         <div id="worddiv">
             <h2>Word</h2>
-            <div className="word">W O R D</div>
+            <div className="word">{props.word}<br/>{props.rightLetters}</div>
         </div>
     );
 }

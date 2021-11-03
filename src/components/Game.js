@@ -1,20 +1,22 @@
-import React, { createContext } from "react";
+import React, { useState } from "react";
 import HangmanImg from './HangmanImg';
 import Controls from './Controls';
 import Word from './Word';
 import Letters from './Letters';
 
-export const GameContext = createContext();
-
-var gameCtx = {
-    word: "",
-    rightLetters: [],
-    wrongLetters: []
-};
-
-export function Game() {
+function Game() {
+    const [state, setState] = useState({
+        word: "",
+        rightLetters: [],
+        wrongLetters: [],
+        // word: "FAFADE",
+        // rightLetters: ['F', 'D'],
+        // wrongLetters: ['X', 'Y', 'Z'],
+        result: 0 // 0 - no result yet; 1 - win; 2 - lost
+    });
 
     function handleNewLetter(char) {
+        var gameOngoing = true;
         console.log("handleNewLetter: ");
         if (char === "") {
             console.log("no letter")
@@ -34,23 +36,25 @@ export function Game() {
             // if last part
                 // Show "you lost" message (HOW??)
                 // reset controls state
+        return gameOngoing;
     }
 
-    function handleNewWord(word) {
-        gameCtx.word = word;
+    function handleNewWord(newWord) {
+        setState({
+            ...state,
+            word: newWord
+        })
         console.log("handleNewWord: ");
-        console.log(word);
+        console.log(newWord);
     }
 
     return (
-        <GameContext.Provider value={{gameCtx}}>
         <div id="hangmandiv">
-            <HangmanImg  />
-            <Controls gameStarted={(gameCtx.word !== "")} onNewLetter={handleNewLetter} onNewWord={handleNewWord} />
-            <Word />
-            <Letters />
+            <HangmanImg wrongLetters={state.wrongLetters} />
+            <Controls gameStarted={(state.word !== "")} onNewLetter={handleNewLetter} onNewWord={handleNewWord} />
+            <Word word={state.word} rightLetters={state.rightLetters} />
+            <Letters wrongLetters={state.wrongLetters} />
         </div>
-        </GameContext.Provider>
     );
 }
 
