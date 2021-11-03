@@ -26,6 +26,7 @@ function WordForm(props) {
                     name="word"
                     value={word}
                     onChange={onChange}
+                    autoFocus
                 />
                 <button className="btn">Start!</button>
             </form>

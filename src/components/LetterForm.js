@@ -27,6 +27,7 @@ function LetterForm(props) {
                     name="letter"
                     value={letter}
                     onChange={onChange}
+                    autoFocus
                 />
                 <button className="btn">Guess</button>
             </form>
