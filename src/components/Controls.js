@@ -16,7 +16,7 @@ function Controls(props) {
 
     return (
         <div id="controls">
-            { gameStarted ?
+            { gameStarted && props.result === 0 ?
             <LetterForm onNewLetter={submitLetter} />
             :
             <WordForm onNewWord={submitWord} />

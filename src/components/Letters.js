@@ -1,7 +1,6 @@
 import React from "react";
 
 function Letters(props) {
-    console.log(props.wrongLetters);
     if (props.result === 0) {
         return (
         <div id="lettersdiv">
@@ -11,11 +10,11 @@ function Letters(props) {
         );
     } else if (props.result === 1) {
         return (
-        <div>WON</div>
+        <div id="lettersdiv"><h3 className="won">You have WON!</h3></div>
         );
     } else {
         return (
-        <div>LOST</div>
+        <div id="lettersdiv"><h3>You have lost!</h3></div>
         );
     }
 }

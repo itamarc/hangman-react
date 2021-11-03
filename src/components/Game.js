@@ -15,60 +15,68 @@ function Game() {
         result: 0 // 0 - no result yet; 1 - win; 2 - lost
     });
 
-    function noMissingLetters() {
+    function noMissingLetters(rl) {
         var complete = true;
         for (let i = 0; i < state.word.length; i++) {
-            if (!state.rightLetters.includes(state.word.charAt(i))) {
+            if (!rl.includes(state.word.charAt(i))) {
                 complete = false;
             }
-            console.log(state.word.charAt(i));
         }
-        console.log(complete);
         return complete;
     }
 
     function handleNewLetter(letter) {
         var gameOngoing = true;
-        console.log("handleNewLetter: ");
         if (letter === "") {
-            console.log("no letter")
             return;
-        } else {
-            console.log(letter);
         }
         // check if the new letter is in the word
         // if it is and it's not on rightLetters
         if (state.word.includes(letter) && !state.rightLetters.includes(letter)) {
-            // show new letter on Word (HOW??)
+            // show new letter on Word
             setState({
                 ...state,
                 rightLetters: [...state.rightLetters, letter]
             });
             // if word complete
-            if (noMissingLetters()) {
-                // show "you won" message (HOW??)
+            if (noMissingLetters([...state.rightLetters, letter])) {
+                // show "you won" message
                 setState({
-                    ...state,
+                    word: "",
+                    rightLetters: [],
+                    wrongLetters: [],
                     result: 1
                 });
             }
         }
         // if it's not and it's not on wrongLetters
-            // add new letter on Letters (HOW??)
+        if (!state.word.includes(letter) && !state.wrongLetters.includes(letter)) {
+            // add new letter on Letters
+            setState({
+                ...state,
+                wrongLetters: [...state.wrongLetters, letter]
+            });
             // show new part on image
             // if last part
-                // Show "you lost" message (HOW??)
+            if (state.wrongLetters.length+1 >= 6) {
+                // Show "you lost" message
+                setState({
+                    ...state,
+                    result: 2
+                });
                 // reset controls state
+            }
+        }
         return gameOngoing;
     }
 
     function handleNewWord(newWord) {
         setState({
-            ...state,
-            word: newWord
-        })
-        console.log("handleNewWord: ");
-        console.log(newWord);
+            word: newWord,
+            rightLetters: [],
+            wrongLetters: [],
+            result: 0
+        });
     }
 
     return (

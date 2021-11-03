@@ -21,6 +21,10 @@ h3 {
   flex-basis: 100%;
 }
 
+h3.won {
+  color: green;
+}
+
 #hangmandiv {
   display: grid;
   grid-template-columns: 120mm 1fr;
