@@ -58,6 +58,7 @@ function Game() {
                 // Show "you lost" message
                 setState({
                     ...state,
+                    wrongLetters: [...state.wrongLetters, letter],
                     result: 2
                 });
                 // reset controls state

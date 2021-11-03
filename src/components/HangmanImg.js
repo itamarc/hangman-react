@@ -1,32 +1,46 @@
 import React from "react";
-import SVG, { Props as SVGProps } from 'react-inlinesvg';
+import { SvgLoader, SvgProxy } from 'react-svgmt';
 
 function HangmanImg(props) {
     const parts = ['head', 'body', 'left-arm', 'right-arm', 'left-leg', 'right-leg'];
-    var nextpart = 0;
+    const partsShown = parts.slice(0, props.wrongLetters.length);
 
     function show(part) {
-        document.getElementById(part).style.strokeOpacity = 1;
+        part.style.strokeOpacity = 1;
     }
 
-    function youHaveLost() {
-        alert("you have lost");
-    }
-
-    function showNextPart() {
-        var notLost = true;
-        const nextpart = props.wrongLetters.length + 1;
-        show(parts[nextpart]);
-        if ((nextpart + 1) === parts.length) {
-            youHaveLost();
-            notLost = false;
-        }
-        return notLost;
+    function hide(part) {
+        part.style.strokeOpacity = 0;
     }
     
-    return (
-        <SVG src='./hangman.svg' />
-    );
+    if (props.wrongLetters.length === 0){
+        return (
+            <>
+            <SvgLoader path='./hangman.svg'>
+                {parts.map(part => (
+                <SvgProxy
+                    key={part}
+                    selector={'#'+part}
+                    onElementSelected={hide}
+                />
+                ))}
+            </SvgLoader>
+            </>
+        );
+    } else {
+        var lastsel = "#" + partsShown[partsShown.length-1];
+        console.log(lastsel);
+        return (
+            <>
+            <SvgLoader path='./hangman.svg'>
+                <SvgProxy
+                    selector={lastsel}
+                    onElementSelected={show}
+                />
+            </SvgLoader>
+            </>
+        );
+    }
 }
 
 export default HangmanImg;
