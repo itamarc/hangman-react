@@ -4,6 +4,7 @@ import { SvgLoader, SvgProxy } from 'react-svgmt';
 function HangmanImg(props) {
     const parts = ['head', 'body', 'left-arm', 'right-arm', 'left-leg', 'right-leg'];
     const partsShown = parts.slice(0, props.wrongLetters.length);
+    const svgpath = window.location.href.replace(window.location.origin, '') + '/hangman.svg';
 
     function show(part) {
         part.style.strokeOpacity = 1;
@@ -16,7 +17,7 @@ function HangmanImg(props) {
     if (props.wrongLetters.length === 0){
         return (
             <>
-            <SvgLoader path='./hangman.svg'>
+            <SvgLoader path={svgpath}>
                 {parts.map(part => (
                 <SvgProxy
                     key={part}
@@ -32,7 +33,7 @@ function HangmanImg(props) {
         console.log(lastsel);
         return (
             <>
-            <SvgLoader path='./hangman.svg'>
+            <SvgLoader path={svgpath}>
                 <SvgProxy
                     selector={lastsel}
                     onElementSelected={show}
