@@ -84,6 +84,13 @@ h3.won {
   text-align: center;
 }
 
+.spacecol {
+  content: '&nbsp;';
+  width: 2em;
+  justify-self: center;
+  font-weight: bold;
+}
+
 .wordcol {
   border-bottom: 2px solid rgb(119, 119, 119);
   width: 2em;

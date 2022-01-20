@@ -15,7 +15,8 @@ function Game() {
     function noMissingLetters(rl) {
         var complete = true;
         for (let i = 0; i < state.word.length; i++) {
-            if (!rl.includes(state.word.charAt(i))) {
+            let char = state.word.charAt(i);
+            if (char.match(/[^ -]/) && !rl.includes(char)) {
                 complete = false;
             }
         }
@@ -41,13 +42,13 @@ function Game() {
                 setState({
                     ...state,
                     rightLetters: [...state.rightLetters, letter],
-                    result: 1
+                    result: 1 // win
                 });
             }
         }
         // if it's not and it's not on wrongLetters
         if (!state.word.includes(letter) && !state.wrongLetters.includes(letter)) {
-            // add new letter on Letters
+            // add new letter on wrongLetters
             setState({
                 ...state,
                 wrongLetters: [...state.wrongLetters, letter]
@@ -59,7 +60,7 @@ function Game() {
                 setState({
                     ...state,
                     wrongLetters: [...state.wrongLetters, letter],
-                    result: 2
+                    result: 2 // lost
                 });
                 // reset controls state
             }
@@ -72,7 +73,7 @@ function Game() {
             word: newWord,
             rightLetters: [],
             wrongLetters: [],
-            result: 0
+            result: 0 // no result yet
         });
     }
 

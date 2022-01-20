@@ -9,11 +9,11 @@ function WordForm(props) {
 
     const submitWord = (e) => {
         e.preventDefault();
-        if (word.trim()) {
-            props.onNewWord(word);
-            setWord("");
+        if (word.trim() && word.match(/^[A-Za-zÀ-ÿ -]+$/)) {
+                props.onNewWord(word);
+                setWord("");
         } else {
-            alert("Please write a word.")
+            alert("Please write a valid word. You can put more than one word if you separate them with a space or a dash.")
         }
     }
 

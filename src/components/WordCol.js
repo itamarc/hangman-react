@@ -1,7 +1,15 @@
 import React from "react";
 
 function WordCol(props) {
-    if (props.rightLetters.includes(props.letter)) {
+    if (props.letter === " ") {
+        return (
+            <div className="spacecol"></div>
+        );
+    } else if (props.letter === "-") {
+        return (
+            <div className="spacecol">-</div>
+        );
+    } else if (props.rightLetters.includes(props.letter)) {
         return (
             <div className="wordcol">{props.letter}</div>
         );

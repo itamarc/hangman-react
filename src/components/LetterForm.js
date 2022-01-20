@@ -9,7 +9,7 @@ function LetterForm(props) {
 
     const submitLetter = (e) => {
         e.preventDefault();
-        if (letter.trim()) {
+        if (letter.trim() && letter.match(/^[A-Za-zÀ-ÿ]$/)) {
             props.onNewLetter(letter);
             setLetter("");
         } else {
