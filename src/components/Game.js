@@ -28,6 +28,9 @@ function Game() {
         if (letter === "") {
             return;
         }
+        if (state.rightLetters.includes(letter) || state.wrongLetters.includes(letter)) {
+            alert("You already guessed this letter.");
+        }
         // check if the new letter is in the word
         // if it is and it's not on rightLetters
         if (state.word.includes(letter) && !state.rightLetters.includes(letter)) {
