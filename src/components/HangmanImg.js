@@ -30,7 +30,6 @@ function HangmanImg(props) {
         );
     } else {
         var lastsel = "#" + partsShown[partsShown.length-1];
-        console.log(lastsel);
         return (
             <>
             <SvgLoader path={svgpath}>
