@@ -11,11 +11,11 @@ function WordCol(props) {
         );
     } else if (props.rightLetters.includes(props.letter)) {
         return (
-            <div className="wordcol">{props.letter}</div>
+            <div className="wordcol">{props.letterOriginal}</div>
         );
     } else if (props.result === 2) {
         return (
-            <div className="wordcol missedletter">{props.letter}</div>
+            <div className="wordcol missedletter">{props.letterOriginal}</div>
         );
     } else {
         return (
